@@ -4,6 +4,7 @@ import com.example.payme.model.Payment;
 import com.example.payme.dto.CreatePaymentRequest;
 import java.util.List;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class PaymentService {
@@ -14,9 +15,14 @@ public class PaymentService {
         this.accountService = accountService;
     }
 
+    @Transactional
     public void performPayment(CreatePaymentRequest request) {
-        // Implement the logic to transfer funds between accounts
-        // You can use accountService to get account details and update balances
+        // start a transaction
+        // debit
+        // credit
+        // add payment record
+        // commit transaction
+        
     }
 
     public Payment getPaymentDetails(int paymentId) {
