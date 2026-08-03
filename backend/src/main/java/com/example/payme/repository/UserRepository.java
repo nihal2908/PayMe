@@ -1,6 +1,7 @@
 package com.example.payme.repository;
 
 import com.example.payme.model.User;
+import com.example.payme.dto.CreateUserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -32,5 +33,10 @@ public class UserRepository {
         String sql = "SELECT * FROM users WHERE id = ?";
         User user = jdbcTemplate.queryForObject(sql, userMapper, id);
         return user;
+    }
+
+    public void createUser(CreateUserRequest user) {
+        String sql = "INSERT INTO users (name, email, phone, country) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(sql, user.name, user.email, user.phone, user.country);
     }
 }
