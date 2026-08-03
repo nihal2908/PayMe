@@ -13,6 +13,10 @@ public class UserRepository {
     
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    public UserRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
     
     private RowMapper<User> userMapper = (rs, rowNum) -> {
         return new User(
