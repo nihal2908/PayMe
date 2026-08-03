@@ -1,4 +1,5 @@
 package com.example.payme.service;
+import com.example.payme.dto.CreateUserRequest;
 import com.example.payme.model.User;
 import com.example.payme.repository.UserRepository;
 import java.util.List;
@@ -19,5 +20,9 @@ public class UserService {
 
     public User getUserById(int id) {
         return userRepository.getUserById(id);
+    }
+
+    public void createUser(CreateUserRequest request) {
+        userRepository.createUser( request);
     }
 }
