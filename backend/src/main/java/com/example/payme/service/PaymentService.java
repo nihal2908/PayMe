@@ -2,6 +2,7 @@ package com.example.payme.service;
 
 import com.example.payme.model.Payment;
 import com.example.payme.dto.CreatePaymentRequest;
+import com.example.payme.repository.PaymentRepository;
 import java.util.List;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,9 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class PaymentService {
     
     private final AccountService accountService;
+    private final PaymentRepository paymentRepository;
 
-    public PaymentService(AccountService accountService) {
+    public PaymentService(AccountService accountService, PaymentRepository paymentRepository) {
         this.accountService = accountService;
+        this.paymentRepository = paymentRepository;
     }
 
     @Transactional
@@ -26,22 +29,18 @@ public class PaymentService {
     }
 
     public Payment getPaymentDetails(int paymentId) {
-        // Implement the logic to retrieve payment details by paymentId
-        return null; // Replace with actual implementation
+        return paymentRepository.getPaymentById(paymentId);
     }
 
     public List<Payment> getAllPayments() {
-        // Implement the logic to retrieve all payments
-        return null; // Replace with actual implementation
+        return paymentRepository.getAllPayments();
     }
 
     public List<Payment> getPaymentsByAccountId(int accountId) {
-        // Implement the logic to retrieve payments for a specific account
-        return null; // Replace with actual implementation
+        return paymentRepository.getPaymentsByAccountId(accountId);
     }
 
     public List<Payment> getPaymentsByUserId(int userId) {
-        // Implement the logic to retrieve payments for a specific user
-        return null; // Replace with actual implementation
+        return paymentRepository.getPaymentsByUserId(userId);
     }
 }
